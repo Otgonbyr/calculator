@@ -1,0 +1,17 @@
+body{
+    display: flex;
+    width: 360px;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+button{
+    width: 85px;
+    height: 35px;
+    color: black;
+    background-color: #dadce0;
+    border: none;
+    border-radius: 4px;
+}
+.custombtn{
+    background-color: white;
+}
