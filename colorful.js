@@ -5,4 +5,3 @@ let circle = document.querySelector('.circle')
 function color() {
     
 }
-
