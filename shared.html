@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <style>
+ body {
+ display: flex;
+ width: 360px;
+ flex-wrap: wrap;
+ gap: 5px;
+ }
+ button {
+ width: 85.15px;
+ height: 36px;
+ background-color: #606368;
+ border-radius: 4px;
+ border: none;
+ color: #e8eaed;
+ }
+ .customBtn {
+ background-color: #e8eaed;
+ color: #606368;
+ }
+ input {
+ width: 100%;
+ }
+ </style>
+ <title>Calculator</title>
+</head>
+<body>
+ <input type="text" />
+ <script>
+ const input = document.querySelector('input');
+ const values = ['(', ')', '%', 'AC', 7, 8, 9, '/', 4, 5, 6, '*', 1, 2, 3, '-', 0, '.', '=', '+'];
+ const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ const operations = {
+ '+': (a, b) => a + b,
+ '-': (a, b) => a - b,
+ '*': (a, b) => a * b,
+ '/': (a, b) => a / b,
+ };
+ function createButton(value) {
+ let button = document.createElement('button');
+ let body = document.querySelector('body');
+ if (nums.includes(value)) button.classList.add('customBtn');
+ button.innerText = value;
+ if (value === 'AC') {
+ button.onclick = clearInput;
+ } else if (value == '=') {
+ button.onclick = calculator;
+ } else {
+ button.onclick = function () {
+ writeInput(value);
+ };
+ }
+ body.appendChild(button);
+ }
+ function drawElements(array) {
+ for (let i = 0; i < array.length; i++) createButton(array[i]);
+ }
+ drawElements(values);
+ function calculator() {
+ let array = input.value.split(' ');
+ console.log(array)
+ input.value += ` = ${operations[array[1]](array[0], array[2])}`;
+ }
+ function writeInput(value) {
+ if (!nums.includes(value) && value !== ".") {
+ input.value += ` ${value} `;
+ } else {
+ input.value += value;
+ }
+ }
+ function clearInput() {
+ input.value = '';
+ }
+ </script>
+</body>
+</html>
